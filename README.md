@@ -1,2 +1,2 @@
 # java
-java projects
+java  Maven projects

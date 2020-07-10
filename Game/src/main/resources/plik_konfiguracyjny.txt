@@ -34,4 +34,4 @@ HighScores
 Name1
 NoName 0000
 Score1
-100 0000
+104 0000

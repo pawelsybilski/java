@@ -133,7 +133,7 @@ public class FileManager {
 		String k = "Name1";
 		int counter=0;
 		
-		File file = new File("plik_konfiguracyjny.txt");
+		File file = new File("src/main/resources/plik_konfiguracyjny.txt");
 		Scanner sc = new Scanner(file);
 		while(!sc.nextLine().equals(k)) {counter++;}
 		counter++;
@@ -153,7 +153,7 @@ public class FileManager {
 		lines.set(counter+2,Integer.toString(score)+" 0000");
 		
 		
-		FileWriter writer = new FileWriter("plik_konfiguracyjny.txt"); 
+		FileWriter writer = new FileWriter("src/main/resources/plik_konfiguracyjny.txt"); 
 		for(String str: lines) {
 			writer.write(str+System.lineSeparator());
 		}

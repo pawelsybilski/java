@@ -85,17 +85,16 @@ public class FileManager {
  * pobiera mape
  * @param mapNumber numer mapy
  * @return mapa 
+ * @throws InterruptedException 
+ * @throws FileNotFoundException 
  */
-	public static Polygon[] getMap(int mapNumber)  {
+	public static Polygon[] getMap(int mapNumber) throws FileNotFoundException, InterruptedException  {
 
-		try {
 		vectorXPointsMap= new ArrayList<Integer>(readingFromFile("xMap"+mapNumber));
 		vectorYPointsMap = new ArrayList<Integer>(readingFromFile("yMap"+mapNumber));
 		vectorXPointsLanding = new ArrayList<Integer>(readingFromFile("xLanding"+mapNumber));
 		vectorYPointsLanding= new ArrayList<Integer>(readingFromFile("yLanding"+mapNumber));
-	} catch (FileNotFoundException | InterruptedException e) {
-		e.printStackTrace();
-	}
+	
 
 		Polygon[] poly = new Polygon[2];
 		poly[0]= new Polygon(toIntArray(vectorXPointsMap), toIntArray(vectorYPointsMap), vectorYPointsMap.size());
@@ -107,17 +106,17 @@ public class FileManager {
 	/**
 	 * pobierz najwyzszy wynik z pliku
 	 * @return najlepszy wynik
+	 * @throws InterruptedException 
+	 * @throws FileNotFoundException 
 	 */
-	public static String getHighScores() {
+	public static String getHighScores() throws FileNotFoundException, InterruptedException {
 		
 		String nameHS1 = null;
 		List<Integer> score1=new ArrayList<Integer>();
-		try {
+		
 			nameHS1=readingFromFileString("Name1");
 			score1=readingFromFile("Score1");
-		} catch (FileNotFoundException | InterruptedException e) {
-			e.printStackTrace();
-		}		
+		
 		String stringForlabelHS="<html>Highiest Score<br/>"+nameHS1+"<br/>"+score1.get(0)+"</html>";
 		
 		return stringForlabelHS;

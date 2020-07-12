@@ -137,10 +137,16 @@ public class Game  extends JPanel implements Runnable,ActionListener {
 	 * @throws FileNotFoundException
 	 * @throws InterruptedException
 	 */
-	public Game() throws FileNotFoundException, InterruptedException{
+	public Game() throws  InterruptedException{
+		try {
 		width = FileManager.toIntArray(FileManager.readingFromFile("WIDTH"))[0];
 		height = FileManager.toIntArray(FileManager.readingFromFile("HEIGHT"))[0];;
 		title = FileManager.readingFromFileString("TITLE");
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("nie mozna znalezc pliku konfiguracyjnego");
+			System.exit(0);
+		}
 		widthScaleRatio=1.0;
 		heightScaleRatio=1.0;
 		nickName="NoName";
@@ -179,7 +185,12 @@ public class Game  extends JPanel implements Runnable,ActionListener {
 		Display();	
 		gameState="start";
 		shipBounds = assets.shipBounds;
-		currentMap= FileManager.getMap(1);
+		try {
+			currentMap= FileManager.getMap(1);
+		} catch (FileNotFoundException | InterruptedException e) {
+			System.out.println("nie mozna znalezc pliku konfiguracyjnego");
+			stop();
+		}
 		PositionManager.updateGravity(1);
 
 
@@ -219,7 +230,8 @@ public class Game  extends JPanel implements Runnable,ActionListener {
 						FileManager.saveHighScore((int)score,nickName);
 				} catch (IOException e) {
 
-					e.printStackTrace();
+					System.out.println("nie mozna znalezc pliku konfiguracyjnego");
+					stop();
 				}
 					gameState="won";
 
@@ -268,7 +280,12 @@ public class Game  extends JPanel implements Runnable,ActionListener {
 			label1=new JLabel("LUNAR LANDER");
 			label2=new JLabel("Enter Nickname");
 			nameField=new JTextField();
-			labelHS=new JLabel(FileManager.getHighScores());
+			try {
+				labelHS=new JLabel(FileManager.getHighScores());
+			} catch (FileNotFoundException | InterruptedException e) {
+				System.out.println("nie mozna znalezc pliku konfiguracyjnego");
+				stop();
+			}
 			
 			label1.setForeground(Color.red);
 			label2.setForeground(Color.red);
@@ -439,7 +456,8 @@ switch (gameState) {
 						update();
 						frame.repaint();
 					} catch (FileNotFoundException | InterruptedException e) {
-						e.printStackTrace();
+						System.out.println("nie mozna znalezc pliku konfiguracyjnego");
+						stop();
 					}
 				
 		}

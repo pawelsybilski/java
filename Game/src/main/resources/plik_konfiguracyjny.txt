@@ -32,6 +32,6 @@ gravity2
 
 HighScores
 Name1
-NoName 0000
+John 0000
 Score1
-104 0000
+120 0000

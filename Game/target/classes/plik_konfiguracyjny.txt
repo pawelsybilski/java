@@ -32,6 +32,6 @@ gravity2
 
 HighScores
 Name1
-NoName 0000
+merlin 0000
 Score1
-100 0000
+160 0000
